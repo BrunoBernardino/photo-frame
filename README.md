@@ -6,12 +6,8 @@ I had initially built Veezy (iOS/iPad app that was sold) for this purpose.
 
 ## Development
 
-`serve -s .`
+`serve -s src`
 
-## Production
+## Deployment
 
-Just push to the `gh-pages` branch.
-
-## TODOs
-
-- [ ] Figure out a way to load & show Live photos.
+Just run `serverless`, after creating a `.env` file.
