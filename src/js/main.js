@@ -50,9 +50,9 @@
 
       window.loadImage(
         file,
-        (canvas) => {
+        () => {
           const img = document.createElement('img');
-          img.src = canvas.toDataURL();
+          img.src = URL.createObjectURL(file);
           img.alt = file.name;
           const span = document.createElement('span');
           span.className = 'thumbnail';
@@ -61,7 +61,7 @@
 
           const video = chosenVideos.find((_video) => removeExtensionFromFileName(_video.name) === removeExtensionFromFileName(file.name));
 
-          chosenImages.push({ name: file.name, url: img.src, type: file.type, video });
+          chosenImages.push({ name: file.name, url: img.src, type: file.type, video, });
         },
         {
           maxWidth: window.screen.availWidth,
