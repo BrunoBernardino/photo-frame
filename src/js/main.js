@@ -96,7 +96,6 @@
         setTimeout(() => {
           videoWrapper.style.opacity = 1;
           slideshowWrapper.style.backgroundImage = '';
-          videoWrapper.play();
         }, videoTransitionInMS);
       }
 
