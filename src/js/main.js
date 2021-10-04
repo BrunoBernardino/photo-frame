@@ -38,6 +38,7 @@
 
     Array.from(files).forEach((file) => {
       if (file.type.match('video.*')) {
+        // NOTE: These become unavailable after about a minute, but it's a mobile webkit bug: https://bugs.webkit.org/show_bug.cgi?id=228683
         const videoUrl = URL.createObjectURL(file);
         chosenVideos.push({ name: file.name, url: videoUrl, type: file.type });
       }
