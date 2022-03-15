@@ -1,7 +1,7 @@
 (() => {
   const chosenImages = [];
   const videoTransitionInMS = 3000;
-  const transitionInMS = 10000;
+  const transitionInMS = 15000;
   let currentImageIndex = -1;
   let slideshowTimeout = null;
 
