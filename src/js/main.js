@@ -60,9 +60,11 @@
           span.insertBefore(img, null);
           thumbnailsWrapper.insertBefore(span, null);
 
-          const video = chosenVideos.find((_video) => removeExtensionFromFileName(_video.name) === removeExtensionFromFileName(file.name));
+          const video = chosenVideos.find((_video) =>
+            removeExtensionFromFileName(_video.name) === removeExtensionFromFileName(file.name)
+          );
 
-          chosenImages.push({ name: file.name, url: img.src, type: file.type, video, });
+          chosenImages.push({ name: file.name, url: img.src, type: file.type, video });
         },
         {
           maxWidth: window.screen.availWidth,
@@ -93,7 +95,7 @@
       if (chosenImage.video) {
         videoElement.src = chosenImage.video.url;
         videoWrapper.load();
-        
+
         setTimeout(() => {
           videoWrapper.style.opacity = 1;
           slideshowWrapper.style.backgroundImage = '';
