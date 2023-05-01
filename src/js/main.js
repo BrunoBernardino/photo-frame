@@ -49,30 +49,24 @@
         return;
       }
 
-      window.loadImage(
-        file,
-        () => {
-          const img = document.createElement('img');
-          img.src = URL.createObjectURL(file);
-          img.alt = file.name;
-          const span = document.createElement('span');
-          span.className = 'thumbnail';
-          span.insertBefore(img, null);
-          thumbnailsWrapper.insertBefore(span, null);
+      const img = document.createElement('img');
+      img.src = URL.createObjectURL(file);
+      img.alt = file.name;
+      const span = document.createElement('span');
+      span.className = 'thumbnail';
+      span.insertBefore(img, null);
 
-          const video = chosenVideos.find((_video) =>
-            removeExtensionFromFileName(_video.name) === removeExtensionFromFileName(file.name)
-          );
-
-          chosenImages.push({ name: file.name, url: img.src, type: file.type, video });
-        },
-        {
-          maxWidth: window.screen.availWidth,
-          maxHeight: window.screen.availHeight,
-          contain: true,
-          orientation: true,
-        },
+      const video = chosenVideos.find((_video) =>
+        removeExtensionFromFileName(_video.name) === removeExtensionFromFileName(file.name)
       );
+
+      if (video) {
+        span.className = `${span.className} with-video`;
+      }
+
+      thumbnailsWrapper.insertBefore(span, null);
+
+      chosenImages.push({ name: file.name, url: img.src, type: file.type, video });
     });
   };
 
@@ -92,6 +86,20 @@
     setTimeout(() => {
       const chosenImage = chosenImages[++currentImageIndex];
 
+      window.loadImage(
+        chosenImage.url,
+        () => {
+          slideshowWrapper.style.backgroundImage = `url(${chosenImage.url})`;
+          slideshowTimeout = setTimeout(showNextImage, transitionInMS);
+        },
+        {
+          maxWidth: window.screen.availWidth,
+          maxHeight: window.screen.availHeight,
+          contain: true,
+          orientation: true,
+        },
+      );
+
       if (chosenImage.video) {
         videoElement.src = chosenImage.video.url;
         videoWrapper.load();
@@ -101,9 +109,6 @@
           slideshowWrapper.style.backgroundImage = '';
         }, videoTransitionInMS);
       }
-
-      slideshowWrapper.style.backgroundImage = `url(${chosenImage.url})`;
-      slideshowTimeout = setTimeout(showNextImage, transitionInMS);
     }, 200);
   };
 
