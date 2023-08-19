@@ -4,8 +4,10 @@ A frontend-only (Vanilla JS) app used for devices that are in a "photo frame" mo
 
 I had initially built [Veezy](https://github.com/BrunoBernardino/Veezy-iOS) (iOS/iPad) for this purpose, but prefer a web app.
 
-Uses [Deno](https://deno.land) as a backend (though you could just serve the `src` directory with any other tool).
+## Development
 
-Deploy by pushing to the `main` branch.
+View locally using `deno run --allow-net --allow-read https://deno.land/std@0.197.0/http/file_server.ts src` or `npx servo src`.
 
-View locally using `make start`.
+## Deployment
+
+Just push to the `main` branch.
